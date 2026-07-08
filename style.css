@@ -1,24 +1,93 @@
 body{
-    background:#ffeef5;
+    background-image: url('https://i.pinimg.com/1200x/69/fc/9f/69fc9f990c838815e17072c96a1c4366.jpg');
+    background-size: 1300px;
     font-family:Arial, sans-serif;
     text-align:center;
     padding:40px;
 }
 
 h1{
-    color:#ff4d88;
+    color:#27F5F5;
 }
+p{ color:#27F5F5;}
 
 button{
     padding:10px 20px;
     margin:10px;
     border:none;
     border-radius:10px;
-    background:#ff4d88;
+    background:#27F5F5;
     color:white;
     cursor:pointer;
 }
 
 button:hover{
     background:#ff1f6b;
+}
+
+/* ---------- Journal Page ---------- */
+
+.journal-page{
+    background: linear-gradient(#fff8f2, #ffe8ef);
+    font-family: "Georgia", serif;
+    text-align: center;
+    padding: 40px;
+}
+
+.journal-page h1{
+    color: #a14d6a;
+    font-size: 42px;
+}
+
+.journal-page p{
+    color:#5a4a52;
+    font-size:18px;
+}
+
+.journal-page textarea{
+
+    width:70%;
+    max-width:800px;
+    height:420px;
+
+    padding:25px;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#fffefc;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    resize:none;
+}
+
+.journal-page button{
+
+    margin-top:20px;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#d66c93;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.journal-page button:hover{
+
+    background:#bf537d;
+
 }
