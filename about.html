@@ -2,36 +2,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Journal ❤️</title>
+    <title>Our Journal!</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="journal-page">
 
-    <h1>Ze journal</h1>
+<h1>Ze Journal</h1>
 
-    <p>
-        This is where we can write our entries! I know I havent done mine for a while now like I promised..
-    </p>
+<textarea id="journal" placeholder="Write your thoughts..."></textarea>
+<br><br>
 
-    <textarea
-        id="journal"
-        placeholder="Dear Luvveh,
+<button onclick="saveJournal()">💾 Save Entry</button>
 
-Today.."
-        rows="15"
-        cols="60"></textarea>
+<hr>
 
-    <br><br>
+<div class="journal-container">
 
-<button onclick="saveJournal()">Save</button>
+    <div id="archive" class="archive">
+        <h2>Archive</h2>
+    </div>
 
+    <div id="viewer" class="viewer">
+        <h2>Select an entry</h2>
+        <p>Click an entry from the archive.</p>
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-<script src="script.js"></script>
+<script src="Script_Journal.js"></script>
 
 </body>
 </html>
