@@ -1,3 +1,11 @@
+const supabaseUrl = "https://egfqxcbhoiylnzlvlwhn.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVnZnF4Y2Job2l5bG56bHZsd2huIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NDQ1NTMsImV4cCI6MjA5OTEyMDU1M30.DDRSbsrVqtiteW0tAbZM8S-XxZhtOrN59WMrc9gGmMM";
+
+const supabase = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
+
 const questions = [
     "What's your favorite memory with me?",
     "What made you smile today?",
@@ -31,4 +39,52 @@ function showDailyQuestion() {
 
     document.getElementById("question").textContent =
         questions[index];
+}
+
+async function saveJournal() {
+
+    const journal = document.getElementById("journal").value;
+
+    const { error } = await supabase
+        .from("journal_entries")
+        .insert([
+            {
+                author: "Victor",
+                entry: journal
+            }
+        ]);
+
+    if (error) {
+        alert("Couldn't save!");
+        console.log(error);
+    } else {
+        alert("Saved!");
+    }
+}
+
+async function loadJournal(){
+
+    const { data, error } =
+        await supabase
+        .from("journal_entries")
+        .select("*")
+        .eq("author","Victor")
+        .order("created_at",{
+            ascending:false
+        })
+        .limit(1);
+
+    if(data.length > 0){
+
+        document.getElementById("journal").value =
+            data[0].entry;
+
+    }
+
+}
+
+window.onload = function(){
+
+    loadJournal();
+
 }
