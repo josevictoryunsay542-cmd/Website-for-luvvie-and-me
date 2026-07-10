@@ -1,101 +1,146 @@
-const supabaseUrl = "https://egfqxcbhoiylnzlvlwhn.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVnZnF4Y2Job2l5bG56bHZsd2huIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1NDQ1NTMsImV4cCI6MjA5OTEyMDU1M30.DDRSbsrVqtiteW0tAbZM8S-XxZhtOrN59WMrc9gGmMM";
+// ===============================
+// Journal Archive
+// ===============================
 
-const supabase = window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
-);
+let archive = [];
+let currentEntry = null;
 
+// Load saved entries from localStorage
+function loadLocalArchive() {
 
-async function saveJournal() {
+    const saved = localStorage.getItem("journalArchive");
 
-    const journal = document.getElementById("journal").value;
-
-    if (journal.trim() === "") {
-        alert("Write something first!");
-        return;
+    if (saved) {
+        archive = JSON.parse(saved);
     }
 
-    const { error } = await supabase
-        .from("journal_entries")
-        .insert([
-            {
-                author: "Victor",
-                entry: journal
-            }
-        ]);
-
-    if (error) {
-        console.log(error);
-        alert("Couldn't save.");
-        return;
-    }
-
-    document.getElementById("journal").value = "";
-
-    loadArchive();
 }
 
-async function loadArchive() {
+// Save entries to localStorage
+function saveLocalArchive() {
 
-    const archive = document.getElementById("archive");
+    localStorage.setItem(
+        "journalArchive",
+        JSON.stringify(archive)
+    );
 
-    archive.innerHTML = "<h2>Archive</h2>";
+}
 
-    const { data, error } = await supabase
-        .from("journal_entries")
-        .select("*")
-        .order("created_at", { ascending: false });
+// Display archive
+function loadArchive() {
 
-    if (error) {
-        console.log(error);
-        return;
-    }
+    const list = document.getElementById("archiveList");
 
-    data.forEach(entry => {
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    archive.forEach((entry, index) => {
 
         const button = document.createElement("button");
 
-        const date = new Date(entry.created_at);
+        button.className = "archive-item";
 
-        button.textContent =
-            date.toLocaleDateString() +
-            " - " +
-            entry.author;
+        const preview =
+            entry.text.length > 30
+            ? entry.text.substring(0, 30) + "..."
+            : entry.text;
 
-        button.className = "archiveButton";
+        button.innerHTML = `
+            <strong>📖 ${entry.title}</strong><br>
+            <small>${preview}</small>
+        `;
 
-        button.onclick = function () {
-            openEntry(entry);
+        button.onclick = () => {
+
+            document.querySelectorAll(".archive-item").forEach(item => {
+                item.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            document.getElementById("journal").value = entry.text;
+
+            currentEntry = index;
+
         };
 
-        archive.appendChild(button);
+        list.appendChild(button);
 
     });
 
 }
 
-function openEntry(entry) {
+// Save current entry
+function saveJournal() {
 
-    const viewer = document.getElementById("viewer");
+    const journal = document.getElementById("journal");
 
-    viewer.innerHTML = `
-        <h2>${entry.author}</h2>
+    if (!journal) return;
 
-        <small>
-            ${new Date(entry.created_at).toLocaleString()}
-        </small>
+    if (currentEntry === null) {
 
-        <hr>
+        alert("Create a new entry first!");
 
-        <p style="white-space:pre-wrap;">
-            ${entry.entry}
-        </p>
+        return;
 
-}
+    }
 
-window.onload = function () {
+    archive[currentEntry].text = journal.value;
+
+    saveLocalArchive();
 
     loadArchive();
 
-};
+}
+
+// ===============================
+// Runs when page loads
+// ===============================
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    loadLocalArchive();
+
+    loadArchive();
+
+    const newEntryBtn = document.getElementById("newEntryBtn");
+
+    if (newEntryBtn) {
+
+        newEntryBtn.addEventListener("click", () => {
+
+            const today = new Date();
+
+            archive.unshift({
+
+                title: today.toLocaleDateString(),
+
+                text: ""
+
+            });
+
+            saveLocalArchive();
+
+            loadArchive();
+
+            currentEntry = 0;
+
+            document.getElementById("journal").value = "";
+
+            const firstButton =
+                document.querySelector(".archive-item");
+
+            if (firstButton) {
+
+                firstButton.classList.add("selected");
+
+            }
+
+            document.getElementById("journal").focus();
+
+        });
+
+    }
+
+});

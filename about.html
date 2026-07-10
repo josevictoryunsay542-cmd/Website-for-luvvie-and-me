@@ -6,31 +6,46 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-
+	
 <body class="journal-page">
 
-<h1>Ze Journal</h1>
+<div class="journal-layout">
 
-<textarea id="journal" placeholder="Write your thoughts..."></textarea>
-<br><br>
+    <aside class="archive-sidebar">
 
-<button onclick="saveJournal()">💾 Save Entry</button>
+        <h2> Archive</h2>
 
-<hr>
+        <button id="newEntryBtn">➕ New Entry</button>
 
-<div class="journal-container">
+        <div id="archiveList">
 
-    <div id="archive" class="archive">
-        <h2>Archive</h2>
-    </div>
+            <!-- Entries will appear here -->
 
-    <div id="viewer" class="viewer">
-        <h2>Select an entry</h2>
-        <p>Click an entry from the archive.</p>
-    </div>
+        </div>
+
+    </aside>
+
+    <main class="journal-main">
+
+        <h1>Ze journal</h1>
+
+        <p>
+            This is where we can write our entries!
+        </p>
+
+        <textarea
+            id="journal"
+            placeholder="Dear Luvveh,
+
+Today..."></textarea>
+
+        <br>
+
+        <button onclick="saveJournal()">💾 Save Entry</button>
+
+    </main>
 
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="Script_Journal.js"></script>
 
