@@ -7,7 +7,7 @@ let currentEntry = null;
 
 async function loadDatabaseArchive() {
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from("journal_entries")
         .select("*")
         .order("created_at", { ascending: false });
@@ -102,7 +102,7 @@ async function saveJournal() {
     archive[currentEntry].text =
         journal.value;
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
 
         .from("journal_entries")
 
@@ -136,7 +136,7 @@ async function createNewEntry() {
 
     const today = new Date();
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
 
         .from("journal_entries")
 
@@ -227,7 +227,7 @@ async function resetJournal() {
     if (!confirm("Delete ALL journal entries?"))
         return;
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
 
         .from("journal_entries")
 

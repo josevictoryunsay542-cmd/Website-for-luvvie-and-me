@@ -35,5 +35,18 @@ function showDailyQuestion() {
 
 }
 
+function resetJournal() {
 
+    if (!confirm("Delete all journal entries?")) return;
+
+    localStorage.removeItem("journalArchive");
+
+    archive = [];
+    currentEntry = null;
+
+    loadArchive();
+
+    document.getElementById("journal").value = "";
+
+}
 
