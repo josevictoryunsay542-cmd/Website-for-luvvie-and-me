@@ -1,32 +1,43 @@
-// ===============================
-// Journal Archive
-// ===============================
-
 let archive = [];
 let currentEntry = null;
 
-// Load saved entries from localStorage
-function loadLocalArchive() {
+// ==========================
+// Load entries from database
+// ==========================
 
-    const saved = localStorage.getItem("journalArchive");
+async function loadDatabaseArchive() {
 
-    if (saved) {
-        archive = JSON.parse(saved);
+    const { data, error } = await supabase
+        .from("journal_entries")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Couldn't load journal entries.");
+
+        return;
+
     }
 
+    archive = data.map(row => ({
+
+        id: row.id,
+
+        title: row.title,
+
+        text: row.entry
+
+    }));
+
 }
 
-// Save entries to localStorage
-function saveLocalArchive() {
+// ==========================
+// Display Archive
+// ==========================
 
-    localStorage.setItem(
-        "journalArchive",
-        JSON.stringify(archive)
-    );
-
-}
-
-// Display archive
 function loadArchive() {
 
     const list = document.getElementById("archiveList");
@@ -71,76 +82,173 @@ function loadArchive() {
 
 }
 
-// Save current entry
-function saveJournal() {
+//=====================================
+//Save Journal
+//=====================================
 
-    const journal = document.getElementById("journal");
-
-    if (!journal) return;
+async function saveJournal() {
 
     if (currentEntry === null) {
 
-        alert("Create a new entry first!");
+        alert("Create a new entry first.");
 
         return;
 
     }
 
-    archive[currentEntry].text = journal.value;
+    const journal =
+        document.getElementById("journal");
 
-    saveLocalArchive();
+    archive[currentEntry].text =
+        journal.value;
+
+    const { error } = await supabase
+
+        .from("journal_entries")
+
+        .update({
+
+            entry: journal.value
+
+        })
+
+        .eq("id", archive[currentEntry].id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Couldn't save.");
+
+        return;
+
+    }
 
     loadArchive();
 
 }
 
-// ===============================
-// Runs when page loads
-// ===============================
+// ==========================
+// New Entry
+// ==========================
 
-window.addEventListener("DOMContentLoaded", () => {
+async function createNewEntry() {
 
-    loadLocalArchive();
+    const today = new Date();
+
+    const { data, error } = await supabase
+
+        .from("journal_entries")
+
+        .insert({
+
+            title: today.toLocaleDateString(),
+
+            entry: ""
+
+        })
+
+        .select()
+
+        .single();
+
+    if (error) {
+
+        console.error(error);
+
+        alert("Couldn't create entry.");
+
+        return;
+
+    }
+
+    archive.unshift({
+
+        id: data.id,
+
+        title: data.title,
+
+        text: data.entry
+
+    });
 
     loadArchive();
 
-    const newEntryBtn = document.getElementById("newEntryBtn");
+    currentEntry = 0;
+
+    document.getElementById("journal").value = "";
+
+    const first =
+        document.querySelector(".archive-item");
+
+    if (first) {
+
+        first.classList.add("selected");
+
+    }
+
+    document.getElementById("journal").focus();
+
+}
+
+// ==========================
+// Page Loaded
+// ==========================
+
+window.addEventListener("DOMContentLoaded", async () => {
+
+    await loadDatabaseArchive();
+
+    loadArchive();
+
+    const newEntryBtn =
+        document.getElementById("newEntryBtn");
 
     if (newEntryBtn) {
 
-        newEntryBtn.addEventListener("click", () => {
+        newEntryBtn.addEventListener(
 
-            const today = new Date();
+            "click",
 
-            archive.unshift({
+            createNewEntry
 
-                title: today.toLocaleDateString(),
-
-                text: ""
-
-            });
-
-            saveLocalArchive();
-
-            loadArchive();
-
-            currentEntry = 0;
-
-            document.getElementById("journal").value = "";
-
-            const firstButton =
-                document.querySelector(".archive-item");
-
-            if (firstButton) {
-
-                firstButton.classList.add("selected");
-
-            }
-
-            document.getElementById("journal").focus();
-
-        });
+        );
 
     }
 
 });
+
+// ==========================
+// Reset Journal
+// ==========================
+
+async function resetJournal() {
+
+    if (!confirm("Delete ALL journal entries?"))
+        return;
+
+    const { error } = await supabase
+
+        .from("journal_entries")
+
+        .delete()
+
+        .neq("id", 0);
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+
+    }
+
+    archive = [];
+
+    currentEntry = null;
+
+    document.getElementById("journal").value = "";
+
+    loadArchive();
+
+}
