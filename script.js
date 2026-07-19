@@ -18,7 +18,6 @@ const questions = [
     // About Each Other
     "What's one thing you admire about me?",
     "What's something you think I'm really good at?",
-    "What's something you think I don't realize about myself?",
     "What's your favorite habit of mine?",
     "What's something you'd like us to do together someday?",
 
