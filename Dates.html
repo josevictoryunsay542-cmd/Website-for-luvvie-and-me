@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Date Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+</head>
+
+<body>
+
+<div class="planner">
+
+    <h1>Planner</h1>
+
+    <div class="planner-form">
+
+        <input
+            type="text"
+            id="title"
+            placeholder="Date title (Movie Night)"
+        >
+
+        <input
+            type="date"
+            id="date"
+        >
+
+        <input
+            type="time"
+            id="time"
+        >
+
+        <input
+            type="text"
+            id="location"
+            placeholder="Location"
+        >
+
+        <textarea
+            id="notes"
+            placeholder="Anything you want to remember?"
+        ></textarea>
+
+        <button id="createDate">
+            Plan Date ❤️
+        </button>
+
+    </div>
+
+    <hr>
+
+    <h2>Upcoming Dates</h2>
+
+    <div id="datesContainer">
+
+    </div>
+
+</div>
+
+<script src="Script_Dates.js"></script>
+
+</body>
+</html>
