@@ -1,232 +1,331 @@
-body{
-    background-image: url('https://i.pinimg.com/1200x/69/fc/9f/69fc9f990c838815e17072c96a1c4366.jpg');
-    background-size: 1300px;
-    font-family:Arial, sans-serif;
-    text-align:center;
-    padding:40px;
+/* ================================
+   JOURNAL - LIBRARY THEME
+   ================================ */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(20, 10, 7, 0.35),
+            rgba(20, 10, 7, 0.55)
+        ),
+        url("https://cdna.artstation.com/p/assets/images/images/084/932/834/large/vakhtangi-tskhadaia-blenderslayer-library-final-render-3-after-edit.jpg?1739533434");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    font-family: Georgia, "Times New Roman", serif;
+    color: #eee1c8;
 }
 
-h1{
-    color:#27F5F5;
+
+/* Main journal layout */
+
+.journal-container {
+    display: flex;
+
+    width: 90%;
+    max-width: 1400px;
+
+    min-height: 85vh;
+
+    margin: 7vh auto;
+
+    background: rgba(24, 14, 11, 0.88);
+
+    border: 1px solid rgba(210, 170, 105, 0.5);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.7),
+        inset 0 0 30px rgba(0, 0, 0, 0.4);
+
+    border-radius: 8px;
+
+    overflow: hidden;
 }
-p{ color:#27F5F5;}
 
-button{
-    padding:10px 20px;
-    margin:10px;
-    border:none;
-    border-radius:10px;
-    background:#27F5F5;
-    color:white;
-    cursor:pointer;
+
+/* ================================
+   ARCHIVE
+   ================================ */
+
+.archive {
+    width: 280px;
+
+    padding: 35px 25px;
+
+    background: rgba(35, 18, 14, 0.95);
+
+    border-right: 1px solid rgba(210, 170, 105, 0.4);
+
+    box-sizing: border-box;
 }
 
-button:hover{
-    background:#ff1f6b;
-}
-
-/* ---------- Journal Page ---------- */
-
-.journal-page{
-    background: linear-gradient(#fff8f2, #ffe8ef);
-    font-family: "Georgia", serif;
+.archive h2 {
     text-align: center;
-    padding: 40px;
+
+    margin-top: 0;
+    margin-bottom: 30px;
+
+    font-size: 30px;
+
+    color: #d8b46a;
+
+    letter-spacing: 2px;
 }
 
-.journal-page h1{
-    color: #a14d6a;
-    font-size: 42px;
+
+/* New Entry button */
+
+#newEntryBtn {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 25px;
+
+    background: #7b2936;
+
+    color: #f4e8cf;
+
+    border: 1px solid #c59a55;
+
+    border-radius: 5px;
+
+    font-family: Georgia, serif;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-.journal-page p{
-    color:#5a4a52;
-    font-size:18px;
+#newEntryBtn:hover {
+    background: #963747;
+
+    box-shadow:
+        0 0 15px rgba(196, 154, 85, 0.3);
 }
 
-.journal-page textarea{
 
-    width:70%;
-    max-width:800px;
-    height:420px;
+/* Archive entries */
 
-    padding:25px;
+.archive-entry {
+    padding: 13px 12px;
 
-    font-size:18px;
+    margin-bottom: 8px;
 
-    line-height:1.8;
+    border-left: 3px solid transparent;
 
-    border:none;
+    color: #d8ccb8;
 
-    border-radius:18px;
+    cursor: pointer;
 
-    background:#fffefc;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-    resize:none;
+    transition: 0.2s;
 }
 
-.journal-page button{
+.archive-entry:hover {
+    background: rgba(120, 75, 50, 0.35);
 
-    margin-top:20px;
+    border-left: 3px solid #c59a55;
 
-    padding:14px 28px;
-
-    border:none;
-
-    border-radius:15px;
-
-    background:#d66c93;
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
+    color: white;
 }
 
-.journal-page button:hover{
+.archive-entry.active {
+    background: rgba(123, 41, 54, 0.5);
 
-    background:#bf537d;
+    border-left: 3px solid #d8b46a;
 
+    color: #fff0d0;
 }
 
-.journal-layout{
 
-    display:flex;
+/* ================================
+   JOURNAL AREA
+   ================================ */
 
-    height:100vh;
+.journal {
+    flex: 1;
 
+    padding: 55px;
+
+    box-sizing: border-box;
 }
 
-/* Sidebar */
 
-.archive-sidebar{
+/* Title */
 
-    width:260px;
+.journal h1 {
+    margin-top: 0;
 
-    background:#fff6f8;
+    text-align: center;
 
-    border-right:2px solid #f2dce4;
+    font-size: 55px;
 
-    padding:25px;
+    color: #d8b46a;
 
-    overflow-y:auto;
+    text-shadow:
+        2px 3px 5px rgba(0, 0, 0, 0.8);
 
+    letter-spacing: 2px;
 }
 
-.archive-sidebar h2{
 
-    text-align:center;
+/* Subtitle */
 
-    margin-bottom:20px;
+.journal-subtitle {
+    text-align: center;
 
+    color: #cfc0a6;
+
+    font-size: 18px;
+
+    margin-bottom: 35px;
 }
 
-#newEntryBtn{
 
-    width:100%;
+/* ================================
+   PAPER
+   ================================ */
 
-    margin-bottom:20px;
+.journal-paper {
+    max-width: 900px;
 
+    min-height: 500px;
+
+    margin: auto;
+
+    padding: 45px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            rgba(245, 234, 210, 0.96),
+            rgba(232, 216, 185, 0.96)
+        );
+
+    color: #33251d;
+
+    border: 1px solid #c29b5c;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55);
+
+    border-radius: 3px;
 }
 
-/* Archive Buttons */
 
-.archive-item{
+/* Greeting */
 
-    width:100%;
+.journal-paper .greeting {
+    font-size: 24px;
 
-    text-align:left;
+    margin-bottom: 35px;
 
-    margin-bottom:10px;
-
-    padding:12px;
-
-    background:white;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.2s;
+    color: #56302d;
 }
 
-.archive-item:hover{
 
-    transform:translateX(5px);
+/* Entry text */
 
-    background:#ffe4ee;
+#journal {
+    width: 100%;
 
+    min-height: 350px;
+
+    resize: vertical;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #33251d;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 19px;
+
+    line-height: 1.8;
 }
 
-/* Main Journal */
 
-.journal-main{
+/* ================================
+   SAVE BUTTON
+   ================================ */
 
-    flex:1;
+#saveEntryBtn {
+    display: block;
 
-    padding:40px;
+    margin: 25px auto 0;
 
+    padding: 13px 35px;
+
+    background: #6f2733;
+
+    color: #f5e8ce;
+
+    border: 1px solid #c59a55;
+
+    border-radius: 4px;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
 }
 
-#journal{
+#saveEntryBtn:hover {
+    background: #8b3341;
 
-    width:100%;
-
-    height:500px;
-
+    box-shadow:
+        0 0 15px rgba(197, 154, 85, 0.35);
 }
 
-.archive-item{
 
-    width:100%;
+/* ================================
+   MOBILE
+   ================================ */
 
-    padding:12px;
+@media (max-width: 800px) {
 
-    margin-bottom:10px;
+    .journal-container {
+        flex-direction: column;
 
-    border:none;
+        width: 95%;
 
-    border-radius:12px;
+        margin: 20px auto;
+    }
 
-    text-align:left;
+    .archive {
+        width: 100%;
 
-    background:white;
+        border-right: none;
 
-    cursor:pointer;
+        border-bottom: 1px solid rgba(210, 170, 105, 0.4);
+    }
 
-    transition:0.2s;
+    .journal {
+        padding: 25px;
+    }
 
-}
+    .journal h1 {
+        font-size: 40px;
+    }
 
-.archive-item:hover{
-
-    background:#ffe4ef;
-
-}
-
-.archive-item.selected{
-
-    background:#ffb8d2;
-
-    border-left:5px solid hotpink;
-
-}
-
-.archive-item strong{
-
-    display:block;
-
-    margin-bottom:5px;
-
-}
-
-.archive-item small{
-
-    color:gray;
-
+    .journal-paper {
+        padding: 25px;
+    }
 }
