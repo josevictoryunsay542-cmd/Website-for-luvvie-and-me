@@ -1,15 +1,8 @@
-/* =====================================================
-   OUR DATE PLANNER
-   Library / Ruina-inspired design
-   ===================================================== */
-
-* {
-    box-sizing: border-box;
-}
+{ box-sizing: border-box; }
 
 html {
     scroll-behavior: smooth;
-}
+     }
 
 body {
     margin: 0;
@@ -30,7 +23,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-}
+     }
 
 
 /* =====================================================
@@ -89,135 +82,133 @@ body {
 }
 
 
-/* =====================================================
-   CALENDAR
-   ===================================================== */
-
 .calendar-section {
     max-width: 1100px;
-
     margin: 0 auto 35px;
+    padding: 35px;
 
-    padding: 30px;
-
-    background: rgba(30, 16, 8, 0.88);
+    background: rgba(30, 16, 8, 0.90);
 
     border: 1px solid #c9a45d;
     border-radius: 5px;
 
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.65);
 }
 
 
-/* Month navigation */
+/* =========================================
+   MONTH CONTROLS
+   ========================================= */
 
-.calendar-navigation {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 25px;
-}
-
-.calendar-navigation button {
+.calendar-section > button {
     width: 50px;
     height: 45px;
+
+    margin: 0 5px 10px 0;
 
     border: 1px solid #c9a45d;
     border-radius: 4px;
 
     background: #4a2b17;
-
     color: #f3dfae;
 
-    font-family: Georgia, serif;
-    font-size: 25px;
+    font-size: 20px;
 
     cursor: pointer;
-
-    transition: 0.2s ease;
 }
 
-.calendar-navigation button:hover {
-    background: #704523;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.5);
+.calendar-section > button:hover {
+    background: #76502b;
 }
 
+
+/* Month title */
 #monthYear {
-    margin: 0;
+    display: block;
 
-    font-size: 34px;
+    margin: 0 0 20px;
+
+    font-size: 40px;
 
     color: #f1d998;
 
-    text-shadow:
-        2px 2px 4px #000;
+    text-shadow: 2px 2px 4px #000;
 }
 
 
-/* =====================================================
+/* =========================================
    WEEKDAYS
-   ===================================================== */
+   ========================================= */
 
-.weekdays {
-    display: grid;
+/* This is the important part */
+#weekdays {
+    display: grid !important;
 
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
 
     gap: 5px;
+
+    width: 100%;
 
     margin-bottom: 5px;
 }
 
-.weekdays div {
-    padding: 12px 5px;
+#weekdays div {
+    display: flex;
 
-    text-align: center;
+    align-items: center;
+    justify-content: center;
 
-    font-weight: bold;
+    min-height: 45px;
 
-    font-size: 17px;
-
-    color: #e9d39e;
+    padding: 8px;
 
     background: #392011;
 
-    border-bottom: 1px solid #a98243;
+    border: 1px solid #694421;
+
+    color: #e9d39e;
+
+    font-weight: bold;
+
+    text-align: center;
 }
 
 
-/* =====================================================
+/* =========================================
    CALENDAR DAYS
-   ===================================================== */
+   ========================================= */
 
-.calendar-days {
-    display: grid;
+#calendarDays {
+    display: grid !important;
 
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
 
     gap: 5px;
+
+    width: 100%;
 }
 
-.calendar-days button,
-.calendar-days div {
-    min-height: 65px;
+
+/* Individual days */
+#calendarDays button,
+#calendarDays div {
+    width: 100%;
+    min-height: 70px;
 
     padding: 10px;
 
     border: 1px solid #694421;
     border-radius: 3px;
 
-    background: rgba(72, 42, 22, 0.9);
+    background: rgba(72, 42, 22, 0.95);
 
     color: #f4e8ce;
 
-    font-family: Georgia, serif;
+    font-family: Georgia, "Times New Roman", serif;
+
     font-size: 17px;
 
     cursor: pointer;
@@ -225,8 +216,10 @@ body {
     transition: 0.2s ease;
 }
 
-.calendar-days button:hover,
-.calendar-days div:hover {
+
+/* Hover */
+#calendarDays button:hover,
+#calendarDays div:hover {
     background: #76502b;
 
     border-color: #d5b56c;
@@ -235,25 +228,8 @@ body {
 }
 
 
-/* Empty calendar spaces */
-
-.calendar-days .empty {
-    background: rgba(30, 16, 8, 0.35);
-
-    border-color: transparent;
-
-    cursor: default;
-}
-
-.calendar-days .empty:hover {
-    transform: none;
-}
-
-
-/* Selected day */
-
-.calendar-days .selected,
-.calendar-days button.selected {
+/* Selected date */
+#calendarDays .selected {
     background: #9a6c32;
 
     border: 2px solid #f0d18b;
@@ -262,22 +238,18 @@ body {
 
     font-weight: bold;
 
-    box-shadow:
-        0 0 12px rgba(226, 187, 100, 0.35);
+    box-shadow: 0 0 12px rgba(226, 187, 100, 0.35);
 }
 
 
-/* Day that has a planned date */
-
-.calendar-days .has-event,
-.calendar-days button.has-event {
+/* Dates containing an event */
+#calendarDays .has-event {
     position: relative;
 
     background: #5b351c;
 }
 
-.calendar-days .has-event::after,
-.calendar-days button.has-event::after {
+#calendarDays .has-event::after {
     content: "✦";
 
     position: absolute;
@@ -286,10 +258,40 @@ body {
     bottom: 4px;
 
     color: #e6c16d;
-
-    font-size: 14px;
 }
 
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .calendar-section {
+        padding: 15px;
+    }
+
+    #monthYear {
+        font-size: 30px;
+    }
+
+    #weekdays div {
+        min-height: 35px;
+
+        padding: 5px;
+
+        font-size: 13px;
+    }
+
+    #calendarDays button,
+    #calendarDays div {
+        min-height: 50px;
+
+        padding: 5px;
+
+        font-size: 13px;
+    }
+}
 
 /* =====================================================
    DATE DETAILS
