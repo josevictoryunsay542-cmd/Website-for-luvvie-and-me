@@ -1,0 +1,641 @@
+/* =====================================================
+   OUR DATE PLANNER
+   Library / Ruina-inspired design
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #f4ead5;
+
+    background:
+        linear-gradient(
+            rgba(35, 18, 8, 0.48),
+            rgba(35, 18, 8, 0.58)
+        ),
+        url("library-background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+/* =====================================================
+   MAIN PAGE
+   ===================================================== */
+
+.planner-container {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 7% 70px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.planner-header {
+    text-align: center;
+
+    max-width: 1000px;
+    margin: 0 auto 35px;
+
+    padding: 30px;
+
+    background: rgba(28, 15, 7, 0.82);
+
+    border: 1px solid #c9a45d;
+    border-radius: 4px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.planner-header h1 {
+    margin: 0 0 12px;
+
+    font-size: clamp(38px, 5vw, 64px);
+
+    color: #f2dfb0;
+
+    text-shadow:
+        3px 3px 5px #000;
+}
+
+.planner-header p {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #e8d6b4;
+
+    text-shadow:
+        2px 2px 4px #000;
+}
+
+
+/* =====================================================
+   CALENDAR
+   ===================================================== */
+
+.calendar-section {
+    max-width: 1100px;
+
+    margin: 0 auto 35px;
+
+    padding: 30px;
+
+    background: rgba(30, 16, 8, 0.88);
+
+    border: 1px solid #c9a45d;
+    border-radius: 5px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.65);
+}
+
+
+/* Month navigation */
+
+.calendar-navigation {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.calendar-navigation button {
+    width: 50px;
+    height: 45px;
+
+    border: 1px solid #c9a45d;
+    border-radius: 4px;
+
+    background: #4a2b17;
+
+    color: #f3dfae;
+
+    font-family: Georgia, serif;
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.calendar-navigation button:hover {
+    background: #704523;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+#monthYear {
+    margin: 0;
+
+    font-size: 34px;
+
+    color: #f1d998;
+
+    text-shadow:
+        2px 2px 4px #000;
+}
+
+
+/* =====================================================
+   WEEKDAYS
+   ===================================================== */
+
+.weekdays {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 5px;
+
+    margin-bottom: 5px;
+}
+
+.weekdays div {
+    padding: 12px 5px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    font-size: 17px;
+
+    color: #e9d39e;
+
+    background: #392011;
+
+    border-bottom: 1px solid #a98243;
+}
+
+
+/* =====================================================
+   CALENDAR DAYS
+   ===================================================== */
+
+.calendar-days {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 5px;
+}
+
+.calendar-days button,
+.calendar-days div {
+    min-height: 65px;
+
+    padding: 10px;
+
+    border: 1px solid #694421;
+    border-radius: 3px;
+
+    background: rgba(72, 42, 22, 0.9);
+
+    color: #f4e8ce;
+
+    font-family: Georgia, serif;
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.calendar-days button:hover,
+.calendar-days div:hover {
+    background: #76502b;
+
+    border-color: #d5b56c;
+
+    transform: translateY(-2px);
+}
+
+
+/* Empty calendar spaces */
+
+.calendar-days .empty {
+    background: rgba(30, 16, 8, 0.35);
+
+    border-color: transparent;
+
+    cursor: default;
+}
+
+.calendar-days .empty:hover {
+    transform: none;
+}
+
+
+/* Selected day */
+
+.calendar-days .selected,
+.calendar-days button.selected {
+    background: #9a6c32;
+
+    border: 2px solid #f0d18b;
+
+    color: white;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 12px rgba(226, 187, 100, 0.35);
+}
+
+
+/* Day that has a planned date */
+
+.calendar-days .has-event,
+.calendar-days button.has-event {
+    position: relative;
+
+    background: #5b351c;
+}
+
+.calendar-days .has-event::after,
+.calendar-days button.has-event::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 6px;
+    bottom: 4px;
+
+    color: #e6c16d;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   DATE DETAILS
+   ===================================================== */
+
+.date-details {
+    max-width: 1100px;
+
+    margin: 0 auto 35px;
+
+    padding: 30px;
+
+    background: rgba(28, 15, 7, 0.9);
+
+    border: 1px solid #c9a45d;
+    border-radius: 5px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.date-details h2 {
+    margin-top: 0;
+
+    font-size: 32px;
+
+    color: #efd69e;
+
+    text-shadow:
+        2px 2px 4px #000;
+}
+
+#selectedDate {
+    margin-bottom: 25px;
+
+    font-size: 19px;
+
+    color: #d9c39b;
+}
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.date-form {
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr auto auto;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+.date-form label {
+    font-size: 18px;
+
+    color: #ead9b8;
+}
+
+.date-form input,
+.date-form textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #a67d40;
+    border-radius: 3px;
+
+    background: rgba(245, 235, 215, 0.95);
+
+    color: #2a1a0d;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.date-form input:focus,
+.date-form textarea:focus {
+    border-color: #e2bd70;
+
+    box-shadow:
+        0 0 8px rgba(224, 185, 103, 0.45);
+}
+
+.date-form textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+button {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+#saveDate,
+.save-date {
+    padding: 12px 20px;
+
+    border: 1px solid #d6b56d;
+    border-radius: 4px;
+
+    background: #7b542b;
+
+    color: #fff2d2;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#saveDate:hover,
+.save-date:hover {
+    background: #a27137;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+
+#clearDate,
+.clear-date {
+    padding: 12px 20px;
+
+    border: 1px solid #8f6a42;
+    border-radius: 4px;
+
+    background: #352014;
+
+    color: #e7d5b5;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#clearDate:hover,
+.clear-date:hover {
+    background: #51301b;
+
+    border-color: #c9a45d;
+}
+
+
+/* =====================================================
+   UPCOMING DATES
+   ===================================================== */
+
+.upcoming-section {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 30px;
+
+    background: rgba(28, 15, 7, 0.9);
+
+    border: 1px solid #c9a45d;
+    border-radius: 5px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.upcoming-section h2 {
+    margin-top: 0;
+
+    font-size: 32px;
+
+    color: #efd69e;
+
+    text-shadow:
+        2px 2px 4px #000;
+}
+
+
+/* Individual upcoming date */
+
+.upcoming-date {
+    margin-bottom: 12px;
+
+    padding: 15px 18px;
+
+    background: rgba(70, 40, 20, 0.9);
+
+    border-left: 4px solid #c9a45d;
+
+    border-radius: 3px;
+
+    transition: 0.2s ease;
+}
+
+.upcoming-date:hover {
+    background: rgba(94, 56, 27, 0.95);
+
+    transform: translateX(4px);
+}
+
+.upcoming-date strong {
+    color: #f0d694;
+
+    font-size: 19px;
+}
+
+.upcoming-date p {
+    margin: 6px 0 0;
+
+    color: #e6d7bd;
+}
+
+
+/* =====================================================
+   BACK BUTTON
+   ===================================================== */
+
+.back-button {
+    display: inline-block;
+
+    margin-bottom: 25px;
+
+    padding: 10px 20px;
+
+    border: 1px solid #c9a45d;
+    border-radius: 4px;
+
+    background: rgba(40, 21, 10, 0.9);
+
+    color: #f1dfb7;
+
+    text-decoration: none;
+
+    font-size: 17px;
+
+    transition: 0.2s ease;
+}
+
+.back-button:hover {
+    background: #68411f;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    .planner-container {
+        padding: 25px 15px 50px;
+    }
+
+    .planner-header h1 {
+        font-size: 40px;
+    }
+
+    .planner-header p {
+        font-size: 17px;
+    }
+
+    .calendar-section,
+    .date-details,
+    .upcoming-section {
+        padding: 18px;
+    }
+
+    .calendar-days button,
+    .calendar-days div {
+        min-height: 48px;
+
+        padding: 6px;
+
+        font-size: 14px;
+    }
+
+    .weekdays div {
+        font-size: 13px;
+    }
+
+    .date-form {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-navigation button {
+        width: 42px;
+        height: 40px;
+    }
+
+    #monthYear {
+        font-size: 25px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+   ===================================================== */
+
+@media (max-width: 500px) {
+
+    .planner-header {
+        padding: 20px 15px;
+    }
+
+    .planner-header h1 {
+        font-size: 32px;
+    }
+
+    .calendar-navigation {
+        gap: 10px;
+    }
+
+    .calendar-days {
+        gap: 2px;
+    }
+
+    .weekdays {
+        gap: 2px;
+    }
+
+    .calendar-days button,
+    .calendar-days div {
+        min-height: 40px;
+
+        font-size: 12px;
+    }
+
+    .weekdays div {
+        padding: 8px 2px;
+
+        font-size: 11px;
+    }
+}
