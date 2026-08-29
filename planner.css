@@ -87,9 +87,9 @@ body {
 
     padding: 30px;
 
-    background: rgba(30, 17, 9, 0.92);
+    background-color: #000000;
 
-    border: 1px solid #c9a45d;
+    border: 1px solid #3cb7ff;
     border-radius: 5px;
 
     box-shadow:
@@ -118,7 +118,7 @@ body {
 
     font-size: clamp(28px, 3vw, 42px);
 
-    color: #f1d99b;
+    color: #1ddcff;
 
     text-shadow:
         2px 2px 4px #000;
@@ -128,12 +128,12 @@ body {
     width: 55px;
     height: 50px;
 
-    border: 1px solid #c9a45d;
+    border: 1px solid #3cb7ff;
     border-radius: 4px;
 
-    background: #4a2b17;
+    background: #0448a3;
 
-    color: #f5dfad;
+    color: #1ddcff;
 
     font-family: Georgia, serif;
     font-size: 20px;
@@ -146,7 +146,7 @@ body {
 }
 
 .calendar-top button:hover {
-    background: #76502b;
+    background: #ccedff;
 
     transform: translateY(-2px);
 
@@ -177,11 +177,11 @@ body {
 
     padding: 8px;
 
-    background: #392011;
+    background: #0448a3;
 
-    border: 1px solid #694421;
+    border: 1px solid #3cb7ff;
 
-    color: #e9d39e;
+    color: #1ddcff;
 
     font-weight: bold;
     text-align: center;
