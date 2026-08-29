@@ -36,9 +36,9 @@ body {
 
     text-align: center;
 
-    background: rgba(5, 70, 102, 1);
+    background-color: #000000;
 
-    border: 1px solid #1FABF0;
+    border: 1px solid #3cb7ff;
     border-radius: 5px;
 
     box-shadow:
@@ -50,7 +50,7 @@ body {
 
     font-size: clamp(42px, 5vw, 68px);
 
-    color: #6EC8F5;
+    color: #1ddcff;
 
     text-shadow:
         3px 3px 5px #000;
@@ -61,7 +61,7 @@ body {
 
     font-size: 21px;
 
-    color: #6EC8F5;
+    color: #1ddcff;
 
     text-shadow:
         2px 2px 4px #000;
