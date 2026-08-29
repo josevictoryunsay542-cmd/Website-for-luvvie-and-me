@@ -12,10 +12,7 @@ body {
     min-height: 100vh;
 
     background-image:
-        linear-gradient(
-            rgba(20, 10, 7, 0.35),
-            rgba(20, 10, 7, 0.55)
-        ),
+        
         url("77baf15e5c2faa69b28133ee0158f64e.jpg");
 
     background-size: cover;
