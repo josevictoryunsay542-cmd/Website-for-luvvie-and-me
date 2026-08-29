@@ -211,10 +211,10 @@ body {
 
     padding: 10px;
 
-    border: 1px solid #694421;
+    border: 1px solid #3cb7ff;
     border-radius: 3px;
 
-    background: rgba(72, 42, 22, 0.95);
+    background: #0448a3;
 
     color: #f4e8ce;
 
@@ -232,9 +232,9 @@ body {
 }
 
 #calendar button:hover {
-    background: #76502b;
+    background: #0a5fc4;
 
-    border-color: #d5b56c;
+    border-color: #8bdcff;
 
     transform: translateY(-2px);
 
@@ -256,7 +256,7 @@ body {
 }
 
 #calendar button.has-event {
-    background: #463866;
+    background: #30264d;
 
     border-color: #8bdcff;
 }
@@ -277,7 +277,7 @@ body {
 #calendar .empty {
     min-height: 75px;
 
-    background: rgba(30, 17, 9, 0.35);
+    background: rgba(10, 30, 55, 0.35);
 
     border: 1px solid transparent;
 
@@ -285,7 +285,7 @@ body {
 }
 
 #calendar .empty:hover {
-    background: rgba(30, 17, 9, 0.35);
+    background: rgba(10, 30, 55, 0.35);
 
     border-color: transparent;
 
@@ -299,9 +299,9 @@ body {
 
     padding: 30px;
 
-    background: rgba(30, 17, 9, 0.94);
+    background: rgba(0, 0, 0, 0.94);
 
-    border: 1px solid #c9a45d;
+    border: 1px solid #3cb7ff;
     border-radius: 5px;
 
     box-shadow:
@@ -316,7 +316,7 @@ body {
 
     font-size: 32px;
 
-    color: #efd69e;
+    color: #1ddcff;
 
     text-shadow:
         2px 2px 4px #000;
@@ -347,7 +347,7 @@ body {
     margin-top: 18px;
     margin-bottom: 7px;
 
-    color: #ead9b8;
+    color: #8bdcff;
 
     font-size: 17px;
 }
@@ -361,7 +361,7 @@ body {
 
     padding: 12px 14px;
 
-    border: 2px solid #8bdcff;
+    border: 2px solid #3cb7ff;
     border-radius: 6px;
 
     background: #e9f7ff;
@@ -468,7 +468,7 @@ body {
 
     padding-top: 25px;
 
-    border-top: 1px solid #806033;
+    border-top: 1px solid #3cb7ff;
 }
 
 .upcoming-section h2 {
@@ -476,7 +476,7 @@ body {
 
     font-size: 28px;
 
-    color: #efd69e;
+    color: #1ddcff;
 
     text-shadow:
         2px 2px 4px #000;
@@ -491,7 +491,7 @@ body {
 }
 
 #upcomingEvents > p {
-    color: #cbb995;
+    color: #8bdcff;
 
     font-style: italic;
 }
@@ -531,12 +531,12 @@ footer a {
 
     padding: 12px 22px;
 
-    background: rgba(35, 20, 10, 0.9);
+    background: rgba(0, 0, 0, 0.9);
 
-    border: 1px solid #c9a45d;
+    border: 1px solid #3cb7ff;
     border-radius: 4px;
 
-    color: #f0ddb5;
+    color: #e9f7ff;
 
     text-decoration: none;
 
@@ -546,7 +546,7 @@ footer a {
 }
 
 footer a:hover {
-    background: #68411f;
+    background: #0448a3;
 
     transform: translateY(-2px);
 }
