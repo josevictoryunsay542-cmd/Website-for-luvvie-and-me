@@ -12,16 +12,28 @@
     <h1>HALLO LUVVEH!</h1>
 
     <p>
-        This is a gift that I plan on presenting to you by... I dont know- but it'll come soon!
+        This is a gift that I plan on presenting to you by... I dont know- but it'll come soon! Open da sidebar to see the other stuffski
+
     </p>
 
-    <button onclick="location.href='about.html'">
-        About Us
-    </button>
+   <button class="menu-button" onclick="openSidebar()">☰</button>
 
-    <button onclick="location.href='questions.html'">
-        Click me!
-    </button>
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<aside id="sidebar" class="sidebar">
+
+    <button class="close-sidebar" onclick="closeSidebar()">×</button>
+
+    <h2>Our Little Corner</h2>
+
+    <nav>
+        <a href="index.html">🏠 Home</a>
+        <a href="journal.html">📖 Journal</a>
+        <a href="questions.html">💭 Questions</a>
+        <a href="dateplanner.html">📅 Date Planner</a>
+    </nav>
+
+</aside>
 
     <script src="script.js"></script>
     <a href="planner.html">
