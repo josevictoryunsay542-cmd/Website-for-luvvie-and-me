@@ -9,7 +9,7 @@ html {
 b
 body {
     margin: 0;
-    min-height: 100vh;
+
 
     background-image: url("77baf15e5c2faa69b28133ee0158f64e.jpg");
 
@@ -431,7 +431,7 @@ body {
 
 .planner-sidebar input,
 .planner-sidebar textarea {
-    width: 80%;
+    width: 95%;
 
     padding: 12px 14px;
 
