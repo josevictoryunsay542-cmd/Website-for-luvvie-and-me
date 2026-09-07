@@ -259,8 +259,8 @@ async function saveEvent() {
     if (existing) {
 
         const { error } =
-            await supabase
-                .from("scheduled_dates")
+            await supabaseClient
+                .from("date_events")
                 .update({
                     title: title,
                     description: description
@@ -280,8 +280,8 @@ async function saveEvent() {
     } else {
 
         const { error } =
-            await supabase
-                .from("scheduled_dates")
+            await supabaseClient
+                .from("date_events")
                 .insert({
                     date: selectedDate,
                     title: title,
