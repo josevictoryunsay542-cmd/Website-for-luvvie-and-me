@@ -14,8 +14,8 @@ let events = [];
 
 async function loadEvents() {
 
-    const { data, error } = await supabase
-        .from("scheduled_dates")
+    const { data, error } = await supabaseClient
+        .from("dare_events")
         .select("*")
         .order("date", { ascending: true });
 
@@ -352,8 +352,8 @@ async function clearEvent() {
 
 
     const { error } =
-        await supabase
-            .from("scheduled_dates")
+        await supabaseClient
+            .from("date_events")
             .delete()
             .eq("id", existing.id);
 
