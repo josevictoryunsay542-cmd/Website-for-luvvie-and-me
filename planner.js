@@ -274,15 +274,14 @@ async function saveEvent() {
 
     } else {
 
-        const { error } =
-            await supabaseClient
-                .from("date_events")
-                .insert({
-                    date: selectedDate,
-                    title: title,
-                    description: description
-                });
-
+       const { error } =
+    await supabaseClient
+        .from("date_events")
+        .insert({
+            event_date: selectedDate,
+            title: title,
+            description: description
+        });
 
         if (error) {
 
