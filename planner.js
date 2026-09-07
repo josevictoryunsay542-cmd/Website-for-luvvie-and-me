@@ -15,7 +15,7 @@ let events = [];
 async function loadEvents() {
 
     const { data, error } = await supabaseClient
-        .from("dare_events")
+        .from("date_events")
         .select("*")
         .order("date", { ascending: true });
 
