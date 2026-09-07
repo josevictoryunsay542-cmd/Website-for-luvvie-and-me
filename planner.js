@@ -13,28 +13,23 @@ let events = [];
 // ==========================================
 
 async function loadEvents() {
-
+    
     const { data, error } = await supabaseClient
         .from("date_events")
-        .select("*")
-        .order("date", { ascending: true });
+        .select("id, date:event_date, title, description, created_at")
+        .order("event_date", { ascending: true });
 
     if (error) {
-
         console.error("Could not load dates:", error);
-
         alert("Couldn't load the date planner.");
-
         return;
     }
 
     events = data || [];
 
     renderCalendar();
-
     renderUpcoming();
 }
-
 
 // ==========================================
 // CALENDAR
